@@ -309,7 +309,7 @@
           '<div class="ai-takeaways-row">' + takeawaysHtml + '</div>' +
         '</div>' +
         '<div class="ai-modal-foot">' +
-          '<span style="font-size:0.78rem;color:#525B4C;">' + escapeHtml(m.hint) + '</span>' +
+          '<span style="font-size:0.78rem;color:#445E5F;">' + escapeHtml(m.hint) + '</span>' +
           '<button type="button" class="ai-modal-done-btn">' + escapeHtml(m.done) + '</button>' +
         '</div>' +
       '</div>';
@@ -353,7 +353,7 @@
           '<pre class="ai-context-pre" id="ai-context-doc-pre">Loading grounded context document...</pre>' +
         '</div>' +
         '<div class="ai-modal-foot">' +
-          '<span style="font-size:0.78rem;color:#525B4C;">Zero hallucination — facts & formulas come straight from this file</span>' +
+          '<span style="font-size:0.78rem;color:#445E5F;">Zero hallucination — facts & formulas come straight from this file</span>' +
           '<button type="button" class="ai-modal-done-btn">Close Preview</button>' +
         '</div>' +
       '</div>';
@@ -465,7 +465,8 @@
       var themeClass = config.theme === 'demo' ? ' theme-demo' : '';
       var contextBtnHtml = config.contextDocUrl
         ? '<button type="button" class="ai-meta-link-btn" data-action="view-context">' +
-            '<span>📄</span><span class="ai-ctx-btn-label">' + escapeHtml(t.contextBtn || 'View Grounded Business Docs') + '</span>' +
+            '<span class="ai-ctx-btn-label">' + escapeHtml(t.contextBtn || 'Context Doc') + '</span>' +
+            '<span aria-hidden="true">↗</span>' +
           '</button>'
         : '';
 
@@ -666,3 +667,4 @@
     }
   };
 })();
+

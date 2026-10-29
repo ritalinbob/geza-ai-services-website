@@ -4,7 +4,8 @@
  *    1) Géza's Services AI Concierge (Hero + Floating Drawer -> /webhook/services-chat)
  *    2) Examples Section Live SMB Quote & FAQ Demo Bot (-> /webhook/example-demo-chat)
  * - Multilingual switcher (EN / DE / HU)
- * - Smooth Eddie.eco-inspired FAQ Accordion
+ * - Scroll-reveal animations & sticky header elevation (IntegratedBio / Eddie.eco feel)
+ * - Smooth FAQ Accordion
  * - Contact Form with Mac mini n8n instant email alert & multi-endpoint fallback
  */
 
@@ -40,60 +41,57 @@ document.addEventListener('DOMContentLoaded', function () {
     theme: 'concierge',
     i18n: {
       en: {
-        title: "Géza's AI Services Assistant",
-        subtext: 'Ask anything about my 4 services, tech approach & process',
+        title: "Géza's AI Services Concierge",
+        subtext: 'Ask anything about my 4 services, architecture & process',
         placeholder: 'Ask about AI chatbots, automations, websites...',
-        online: 'Online · Mac mini n8n',
+        online: 'Online · n8n',
         thinking: 'Consulting grounded services dossier',
-        answeredIn: '⚡ Answered in ',
-        groundedLive: '✓ Live Mac mini n8n + Ollama',
-        groundedFallback: '✓ Grounded Services Dossier',
-        archBtn: 'How this AI works · Architecture',
-        contextBtn: 'Services Context Doc',
+        answeredIn: 'Answered in ',
+        groundedLive: '✓ Live Mac mini n8n',
+        groundedFallback: '✓ Grounded Dossier',
+        archBtn: 'Architecture',
+        contextBtn: 'Context Doc',
         contextModalTitle: 'Grounded Context: Géza Services Dossier (geza-services-context.md)',
         pills: [
-          { label: '💬 AI Quote Chatbots', query: 'How do your AI chatbots answer questions and calculate quotes from business docs?' },
-          { label: '⚙️ n8n Automations', query: 'What backend and marketing automations can you build for an SMB?' },
-          { label: '🌐 Full-Stack Websites', query: 'Can you build a dynamic website from scratch or customize my existing website?' },
-          { label: '🧠 Personal AI', query: 'How can a personal AI assistant help with work-life balance?' }
+          { label: 'AI Quote Chatbots', query: 'How do your AI chatbots answer questions and calculate quotes from business docs?' },
+          { label: 'n8n Automations', query: 'What backend and marketing automations can you build for an SMB?' },
+          { label: 'Full-Stack Websites', query: 'Can you build a dynamic website from scratch or customize my existing website?' }
         ]
       },
       de: {
         title: 'Gézas KI-Serviceberater',
-        subtext: 'Fragen Sie mich alles zu Gézas 4 Leistungen & Ablauf',
+        subtext: 'Fragen Sie alles zu Gézas 4 Leistungen & Ablauf',
         placeholder: 'Frage zu KI-Chatbots, Automation, Websites...',
-        online: 'Online · Mac mini n8n',
+        online: 'Online · n8n',
         thinking: 'Prüft Leistungs-Dossier',
-        answeredIn: '⚡ Beantwortet in ',
-        groundedLive: '✓ Live Mac mini n8n + Ollama',
+        answeredIn: 'Beantwortet in ',
+        groundedLive: '✓ Live Mac mini n8n',
         groundedFallback: '✓ Verifiziertes Dossier',
-        archBtn: 'KI-Architektur ansehen',
+        archBtn: 'Architektur',
         contextBtn: 'Kontext-Dokument',
         contextModalTitle: 'Grounded Context: Géza Leistungs-Dossier (geza-services-context.md)',
         pills: [
-          { label: '💬 KI-Angebotsbots', query: 'Wie berechnen Ihre KI-Chatbots Angebote aus Firmendokumenten?' },
-          { label: '⚙️ Automatisierung', query: 'Welche Backend- und Marketing-Automatisierungen bauen Sie für KMU?' },
-          { label: '🌐 Full-Stack Websites', query: 'Bauen Sie neue dynamische Websites oder passen bestehende Seiten an?' },
-          { label: '🧠 Persönliche KI', query: 'Wie hilft ein persönlicher KI-Assistent bei der Work-Life-Balance?' }
+          { label: 'KI-Angebotsbots', query: 'Wie berechnen Ihre KI-Chatbots Angebote aus Firmendokumenten?' },
+          { label: 'n8n Automatisierung', query: 'Welche Backend- und Marketing-Automatisierungen bauen Sie für KMU?' },
+          { label: 'Full-Stack Websites', query: 'Bauen Sie neue dynamische Websites oder passen bestehende Seiten an?' }
         ]
       },
       hu: {
         title: 'Géza AI Szolgáltatási Tanácsadója',
         subtext: 'Kérdezz bátran a 4 szolgáltatásról és a megvalósításról',
         placeholder: 'Kérdezz az AI chatbotokról, automatizációról...',
-        online: 'Elérhető · Mac mini n8n',
+        online: 'Elérhető · n8n',
         thinking: 'Szolgáltatási dosszié elemzése',
-        answeredIn: '⚡ Válaszolva ',
-        groundedLive: '✓ Élő Mac mini n8n + Ollama',
+        answeredIn: 'Válaszolva ',
+        groundedLive: '✓ Élő Mac mini n8n',
         groundedFallback: '✓ Hitelesített Dosszié',
-        archBtn: 'Hogyan működik · Architektúra',
+        archBtn: 'Architektúra',
         contextBtn: 'Kontextus Dokumentum',
         contextModalTitle: 'Hitelesített Kontextus: Géza Szolgáltatási Dosszié (geza-services-context.md)',
         pills: [
-          { label: '💬 AI Árkalkulátor Botok', query: 'Hogyan válaszolnak és számolnak árajánlatot az AI chatbotjaid a céges dokumentumokból?' },
-          { label: '⚙️ n8n Automatizáció', query: 'Milyen backend és marketing automatizációkat építesz KKV-knak?' },
-          { label: '🌐 Full-Stack Weboldalak', query: 'Teljesen új dinamikus weboldalt és meglévő oldal továbbfejlesztést is vállalsz?' },
-          { label: '🧠 Személyes AI', query: 'Hogyan segít egy személyes AI asszisztens a munka-magánélet egyensúlyban?' }
+          { label: 'AI Árkalkulátor Botok', query: 'Hogyan válaszolnak és számolnak árajánlatot az AI chatbotjaid a céges dokumentumokból?' },
+          { label: 'n8n Automatizáció', query: 'Milyen backend és marketing automatizációkat építesz KKV-knak?' },
+          { label: 'Full-Stack Weboldalak', query: 'Teljesen új dinamikus weboldalt és meglévő oldal továbbfejlesztést is vállalsz?' }
         ]
       }
     }
@@ -108,59 +106,57 @@ document.addEventListener('DOMContentLoaded', function () {
     theme: 'demo',
     i18n: {
       en: {
-        title: 'NordicSeal Quote & Service AI (Demo)',
-        subtext: 'Ask service questions or request a live window insulation quote!',
+        title: 'NordicSeal Quote & Service AI',
+        subtext: 'Ask service questions or request a live window insulation quote',
         placeholder: 'e.g. Quote for 6 windows, or 30m + 4 sashes...',
-        online: 'Live Demo · Mac mini n8n',
+        online: 'Live Demo · n8n',
         thinking: 'Calculating from grounded price list',
-        answeredIn: '⚡ Calculated in ',
-        groundedLive: '✓ Live Mac mini n8n Quote Engine',
+        answeredIn: 'Calculated in ',
+        groundedLive: '✓ Live n8n Quote Engine',
         groundedFallback: '✓ Grounded Price Sheet',
-        archBtn: 'Architecture Flowchart',
-        contextBtn: 'View Grounded Price Doc',
+        archBtn: 'Architecture',
+        contextBtn: 'Grounded Price Doc',
         contextModalTitle: 'Demo SMB Grounded Context & Price Rules (example-business-context.md)',
         pills: [
-          { label: '🧮 Quote for 6 Windows', query: 'Can you calculate an estimated quote for insulating 6 standard single wooden windows in Budapest?' },
-          { label: '🪟 30m + 5 Sash Adjustments', query: 'How much would 30 linear meters of Swedish groove insulation plus hardware adjustment on 5 sashes cost?' },
-          { label: '🛡️ Dust, Winter & Warranty', query: 'Is the routing dusty, can it be done in winter, and what warranty do you offer?' },
-          { label: '📍 Survey & Call-Out Fee', query: 'Do you charge an on-site survey fee in Budapest or Pest County?' }
+          { label: 'Quote for 6 Windows', query: 'Can you calculate an estimated quote for insulating 6 standard single wooden windows in Budapest?' },
+          { label: '30m + 5 Sash Adjustments', query: 'How much would 30 linear meters of Swedish groove insulation plus hardware adjustment on 5 sashes cost?' },
+          { label: 'Dust, Winter & Warranty', query: 'Is the routing dusty, can it be done in winter, and what warranty do you offer?' }
         ]
       },
       de: {
-        title: 'NordicSeal Angebots-KI (Live-Demo)',
-        subtext: 'Stellen Sie Fachfragen oder lassen Sie live ein Angebot berechnen!',
+        title: 'NordicSeal Angebots-KI',
+        subtext: 'Stellen Sie Fachfragen oder lassen Sie live ein Angebot berechnen',
         placeholder: 'z. B. Angebot für 6 Fenster oder 30m Dichtung...',
-        online: 'Live-Demo · Mac mini n8n',
+        online: 'Live-Demo · n8n',
         thinking: 'Berechnet anhand der Preisliste',
-        answeredIn: '⚡ Berechnet in ',
-        groundedLive: '✓ Live Mac mini n8n Kalkulator',
+        answeredIn: 'Berechnet in ',
+        groundedLive: '✓ Live n8n Kalkulator',
         groundedFallback: '✓ Verifizierte Preisliste',
         archBtn: 'Architektur',
-        contextBtn: 'Hinterlegte Preisliste ansehen',
+        contextBtn: 'Preisliste ansehen',
         contextModalTitle: 'Demo-KMU Preisliste & Regeln (example-business-context.md)',
         pills: [
-          { label: '🧮 Angebot für 6 Fenster', query: 'Bitte berechne ein Angebot für die Isolierung von 6 Standard-Holzfenstern in Zone A.' },
-          { label: '🪟 30m + 5 Beschläge', query: 'Was kosten 30 Laufmeter Silikondichtung plus Beschlageinstellung an 5 Flügeln?' },
-          { label: '🛡️ Winter, Staub & Garantie', query: 'Ist das Einfräsen staubfrei, auch im Winter möglich und welche Garantie gibt es?' }
+          { label: 'Angebot für 6 Fenster', query: 'Bitte berechne ein Angebot für die Isolierung von 6 Standard-Holzfenstern in Zone A.' },
+          { label: '30m + 5 Beschläge', query: 'Was kosten 30 Laufmeter Silikondichtung plus Beschlageinstellung an 5 Flügeln?' },
+          { label: 'Winter, Staub & Garantie', query: 'Ist das Einfräsen staubfrei, auch im Winter möglich und welche Garantie gibt es?' }
         ]
       },
       hu: {
-        title: 'NordicSeal Árkalkulátor AI (Élő Demó)',
-        subtext: 'Kérdezz a technológiáról vagy kérj azonnali élő árkalkulációt!',
+        title: 'NordicSeal Árkalkulátor AI',
+        subtext: 'Kérdezz a technológiáról vagy kérj azonnali élő árkalkulációt',
         placeholder: 'pl. Mennyibe kerül 6 normál faablak szigetelése Budapesten?',
-        online: 'Élő Demó · Mac mini n8n',
+        online: 'Élő Demó · n8n',
         thinking: 'Számítás a hiteles árlista alapján',
-        answeredIn: '⚡ Kiszámolva ',
-        groundedLive: '✓ Élő Mac mini n8n Kalkulátor',
+        answeredIn: 'Kiszámolva ',
+        groundedLive: '✓ Élő n8n Kalkulátor',
         groundedFallback: '✓ Hitelesített Árlista',
         archBtn: 'Architektúra',
         contextBtn: 'Üzleti Árlista Dokumentum',
         contextModalTitle: 'Demó KKV Tényalapú Árlista és Szabályok (example-business-context.md)',
         pills: [
-          { label: '🧮 Árajánlat 6 ablakra', query: 'Kérlek számolj előzetes árajánlatot 6 darab normál egyrétegű faablak szigetelésére Budapesten!' },
-          { label: '🪟 30 fm + 5 szárny beállítás', query: 'Mennyibe kerül 30 folyóméter svéd bemarásos szigetelés és 5 ablakszárny vasalatbeállítása?' },
-          { label: '🛡️ Pormentesség, Tél & Garancia', query: 'Mennyi ideig tart a munka, jár-e porral, télen is végezhető, és mennyi a garancia?' },
-          { label: '📍 Felmérés Budapesten', query: 'Mennyibe kerül a helyszíni felmérés Budapesten és Pest megyében?' }
+          { label: 'Árajánlat 6 ablakra', query: 'Kérlek számolj előzetes árajánlatot 6 darab normál egyrétegű faablak szigetelésére Budapesten!' },
+          { label: '30 fm + 5 szárny beállítás', query: 'Mennyibe kerül 30 folyóméter svéd bemarásos szigetelés és 5 ablakszárny vasalatbeállítása?' },
+          { label: 'Pormentesség, Tél & Garancia', query: 'Mennyi ideig tart a munka, jár-e porral, télen is végezhető, és mennyi a garancia?' }
         ]
       }
     }
@@ -234,7 +230,48 @@ document.addEventListener('DOMContentLoaded', function () {
   applyLanguage(currentLang);
 
   // =========================================================================
-  // 3. Mobile Menu, Scroll Spy & Service Pre-Selection Links
+  // 3. Scroll Reveal Animations & Sticky Header Elevation
+  // =========================================================================
+  var headerWrap = document.getElementById('site-header-wrap');
+  function updateHeaderOnScroll() {
+    if (!headerWrap) return;
+    headerWrap.classList.toggle('is-scrolled', window.scrollY > 18);
+  }
+  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  updateHeaderOnScroll();
+
+  var revealEls = document.querySelectorAll('.reveal-up');
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+            if (delay > 0) {
+              setTimeout(function () {
+                el.classList.add('is-visible');
+              }, delay);
+            } else {
+              el.classList.add('is-visible');
+            }
+            revealObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    revealEls.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  // =========================================================================
+  // 4. Mobile Menu, Scroll Spy & Service Pre-Selection Links
   // =========================================================================
   var mobileBtn = document.getElementById('mobile-menu-btn');
   var mainNav = document.getElementById('main-nav');
@@ -252,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var navLinks = document.querySelectorAll('.nav-link');
-  var sections = document.querySelectorAll('section[id], div#services');
+  var sections = document.querySelectorAll('section[id]');
   if ('IntersectionObserver' in window) {
     var spy = new IntersectionObserver(
       function (entries) {
@@ -281,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // =========================================================================
-  // 4. Floating Bottom-Right Services AI Concierge Drawer
+  // 5. Floating Bottom-Right Services AI Concierge Drawer
   // =========================================================================
   var floatBtn = document.getElementById('floating-concierge-btn');
   var floatDrawer = document.getElementById('floating-concierge-drawer');
@@ -303,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (faqOpenAiBtn) faqOpenAiBtn.addEventListener('click', function () { toggleConciergeDrawer(true); });
 
   // =========================================================================
-  // 5. FAQ Smooth Collapsible Accordion
+  // 6. FAQ Smooth Collapsible Accordion
   // =========================================================================
   var faqItems = document.querySelectorAll('#faq-accordion .faq-item');
   faqItems.forEach(function (item) {
@@ -330,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // =========================================================================
-  // 6. Copy Email Toast
+  // 7. Copy Email Toast
   // =========================================================================
   var toastEl = document.getElementById('toast-msg');
   var toastTimer = null;
@@ -359,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // =========================================================================
-  // 7. Contact Me Form -> Mac mini n8n Instant Email Alert
+  // 8. Contact Me Form -> Mac mini n8n Instant Email Alert
   // =========================================================================
   var contactForm = document.getElementById('services-contact-form');
   if (contactForm) {
@@ -493,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var ref = data && data.submissionId ? ' (Ref: ' + escapeHtml(data.submissionId) + ')' : '';
           statusBanner.className = 'contact-status-banner success';
-          statusBanner.innerHTML = '✅ <strong>' + escapeHtml(payload.name) + '</strong> — ' + escapeHtml(t('status_ok')) + ref;
+          statusBanner.innerHTML = '✓ <strong>' + escapeHtml(payload.name) + '</strong> — ' + escapeHtml(t('status_ok')) + ref;
         })
         .catch(function () {
           submitBtn.disabled = false;
@@ -509,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function () {
           );
           statusBanner.className = 'contact-status-banner error';
           statusBanner.innerHTML =
-            '<div>⚠️ ' + escapeHtml(t('status_err')) + '</div>' +
+            '<div>' + escapeHtml(t('status_err')) + '</div>' +
             '<div style="margin-top:10px;"><a class="btn btn-primary btn-sm" href="mailto:ghorvath@gmail.com?subject=' +
             subj +
             '&body=' +
