@@ -1,0 +1,205 @@
+{
+  "name": "AI Example Demo Chatbot (Geza Web Services)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "example-demo-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -620,
+        0
+      ],
+      "id": "example-demo-webhook",
+      "name": "Webhook Trigger",
+      "webhookId": "geza-example-demo-chat-v1"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/gezahorvath/.n8n-files/example-business-context.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        0
+      ],
+      "id": "read-example-context",
+      "name": "Read Demo Context File",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "data",
+        "destinationKey": "contextText",
+        "options": {
+          "keepSource": "json"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        0
+      ],
+      "id": "extract-example-context",
+      "name": "Extract Context Text",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook Trigger').item.json;\nconst body = webhookData.body || webhookData;\nconst rawQuestion = (body.question || '').trim();\nlet language = (body.language || '').toLowerCase().trim();\nconst sessionId = body.sessionId || ('demo_' + Math.random().toString(36).substring(2, 10));\nconst clientTimestamp = body.timestamp || new Date().toISOString();\n\nif (!rawQuestion || rawQuestion.length === 0) {\n  throw new Error('Question cannot be empty');\n}\n\nconst question = rawQuestion.substring(0, 400);\n\nif (!language || !['en', 'de', 'hu'].includes(language)) {\n  const qLower = question.toLowerCase();\n  if (/[áéíóöőúüű]/i.test(qLower) || qLower.includes('ablak') || qLower.includes('mennyi') || qLower.includes('szigetel')) {\n    language = 'hu';\n  } else if (/[äöüß]/i.test(qLower) || qLower.includes('fenster') || qLower.includes('angebot') || qLower.includes('meter')) {\n    language = 'de';\n  } else {\n    language = 'en';\n  }\n}\n\nlet targetModel = 'qwen2.5:7b';\nif (language === 'hu') {\n  targetModel = 'hermes3:8b';\n}\n\nlet rawFileContext = '';\ntry {\n  rawFileContext = ($('Extract Context Text').item.json.contextText || '').trim();\n} catch (e) {\n  rawFileContext = '';\n}\n\nlet businessContext = rawFileContext;\nif (language === 'de') {\n  const deMatch = rawFileContext.match(/=== SECTION: DE ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (deMatch && deMatch[1].trim().length > 50) businessContext = deMatch[1].trim();\n} else if (language === 'hu') {\n  const huMatch = rawFileContext.match(/=== SECTION: HU ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (huMatch && huMatch[1].trim().length > 50) businessContext = huMatch[1].trim();\n} else {\n  const enMatch = rawFileContext.match(/=== SECTION: EN ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (enMatch && enMatch[1].trim().length > 50) businessContext = enMatch[1].trim();\n}\n\nif (!businessContext || businessContext.length < 50) {\n  businessContext = 'NordicSeal Window Insulation Demo: Swedish groove-routed silicone gasket = 12 EUR/m (4,500 HUF/m). 1 standard window = 4.5m. >25m gets 10% discount. Hardware adjustment = 16 EUR/sash. Low-E thermal glass = 72 EUR/m2. Free survey in Zone A (Budapest), 10-year warranty.';\n}\n\nlet systemPrompt = '';\nif (language === 'de') {\n  systemPrompt = `Sie sind der interaktive KI-Kundenberater und Angebotsrechner für \"NordicSeal Fensterisolierung\" (eine Live-KMU-Chatbot-Demo von Géza Horváth). Beantworten Sie Kundenfragen und berechnen Sie Kostenschätzungen STRIKT anhand des folgenden GESCHÄFTSDOSSIERS auf Deutsch.\\n\\n### REGELN:\\n1. Verwenden Sie AUSSCHLIESSLICH die Preise, Formeln (z. B. 4,5 m pro Standardfenster, 10 % Mengenrabatt über 25 Laufmeter) und Fakten aus dem Dossier.\\n2. Zeigen Sie bei Preisanfragen die Berechnung Schritt für Schritt übersichtlich vor.\\n3. Wenn nach etwas außerhalb des Dossiers gefragt wird, sagen Sie höflich, dass dies nicht in den hinterlegten Firmendokumenten steht.\\n4. Antworten Sie präzise und freundlich (2-6 Sätze oder kurze Bullet-Points).\\n\\n### GESCHÄFTSDOSSIER & PREISLISTE:\\n${businessContext}`;\n} else if (language === 'hu') {\n  systemPrompt = `Te a \"NordicSeal Ablakszigetelés\" interaktív AI ügyfélszolgálati és árkalkulátor asszisztense vagy (Horváth Géza élő KKV chatbot demója). Válaszolj az ügyfelek kérdéseire és készíts előzetes árkalkulációt SZIGORÚAN az alábbi ÜZLETI TUDÁSBÁZIS alapján, magyarul.\\n\\n### SZABÁLYOK:\\n1. KIZÁRÓLAG a tudásbázisban szereplő egységárakat, méretszabályokat (pl. 1 normál ablak = 4,5 fm, 25 fm felett 10% mennyiségi kedvezmény) és tényeket használd.\\n2. Árajánlatkérésnél mutasd be átláthatóan, lépésről lépésre a szorzást és az esetleges kedvezményt.\\n3. Ha a dokumentáción kívüli dologról kérdeznek, jelezd udvariasan, hogy erről nincs adat a vállalkozás hitelesített dokumentációjában.\\n4. Válaszolj tömören és barátságosan (2-6 mondat vagy rövid felsorolás).\\n\\n### ÜZLETI TUDÁSBÁZIS ÉS ÁRLISTA:\\n${businessContext}`;\n} else {\n  systemPrompt = `You are the interactive AI Customer & Quote Calculator Assistant for \"NordicSeal Window Insulation & Renovation\" (a live SMB chatbot showcase built by Géza Horváth). Answer customer questions and calculate instant price estimates STRICTLY using the GROUNDED BUSINESS DOSSIER below.\\n\\n### STRICT GROUNDING & QUOTE RULES:\\n1. Use ONLY the unit rates, window perimeter defaults (e.g., 4.5m per standard single window, 9.0m per double box window, 10% volume discount when total exceeds 25 linear meters), and operational facts in the dossier.\\n2. Whenever asked for an estimate or quote, show clean step-by-step math (meters, subtotal, any 10% discount if >25m, and final estimated total in EUR or HUF).\\n3. If asked about a service not in the dossier, state politely that it is not listed in NordicSeal's verified business documentation.\\n4. Keep responses crisp, structured, and helpful (2-6 sentences or bullet points).\\n\\n### GROUNDED BUSINESS DOSSIER & PRICE LIST:\\n${businessContext}`;\n}\n\nreturn {\n  json: {\n    question: question,\n    language: language,\n    targetModel: targetModel,\n    sessionId: sessionId,\n    clientTimestamp: clientTimestamp,\n    systemPrompt: systemPrompt,\n    startTime: Date.now()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        0
+      ],
+      "id": "build-example-prompt",
+      "name": "Sanitize & Build Quote Prompt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": {{ JSON.stringify($json.targetModel) }},\n  \"prompt\": {{ JSON.stringify($json.question) }},\n  \"system\": {{ JSON.stringify($json.systemPrompt) }},\n  \"stream\": false,\n  \"options\": {\n    \"temperature\": 0.1,\n    \"top_p\": 0.9,\n    \"num_predict\": 340\n  }\n}",
+        "options": {
+          "timeout": 45000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "ollama-example-llm",
+      "name": "Ollama LLM"
+    },
+    {
+      "parameters": {
+        "jsCode": "const prev = $('Sanitize & Build Quote Prompt').item.json;\nconst ollamaResponse = $input.item.json;\nconst answer = (ollamaResponse.response || '').trim();\nconst durationMs = Date.now() - prev.startTime;\n\nreturn {\n  json: {\n    status: 'success',\n    answer: answer,\n    sessionId: prev.sessionId,\n    language: prev.language,\n    model: prev.targetModel,\n    durationMs: durationMs\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "format-example-response",
+      "name": "Format Response"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"answer\": {{ JSON.stringify($json.answer) }},\n  \"sessionId\": {{ JSON.stringify($json.sessionId) }},\n  \"durationMs\": {{ $json.durationMs }}\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type, Accept"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        0
+      ],
+      "id": "respond-example-webhook",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Demo Context File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Demo Context File": {
+      "main": [
+        [
+          {
+            "node": "Extract Context Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Context Text": {
+      "main": [
+        [
+          {
+            "node": "Sanitize & Build Quote Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sanitize & Build Quote Prompt": {
+      "main": [
+        [
+          {
+            "node": "Ollama LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama LLM": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

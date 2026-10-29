@@ -1,0 +1,205 @@
+{
+  "name": "AI Services Concierge (Geza Web Services)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "services-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -620,
+        0
+      ],
+      "id": "services-chat-webhook",
+      "name": "Webhook Trigger",
+      "webhookId": "geza-services-chat-v1"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/gezahorvath/.n8n-files/geza-services-context.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        0
+      ],
+      "id": "read-services-context",
+      "name": "Read Services Context File",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "data",
+        "destinationKey": "contextText",
+        "options": {
+          "keepSource": "json"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        0
+      ],
+      "id": "extract-services-context",
+      "name": "Extract Context Text",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook Trigger').item.json;\nconst body = webhookData.body || webhookData;\nconst rawQuestion = (body.question || '').trim();\nlet language = (body.language || '').toLowerCase().trim();\nconst sessionId = body.sessionId || ('srv_' + Math.random().toString(36).substring(2, 10));\nconst clientTimestamp = body.timestamp || new Date().toISOString();\n\nif (!rawQuestion || rawQuestion.length === 0) {\n  throw new Error('Question cannot be empty');\n}\n\nconst question = rawQuestion.substring(0, 400);\n\nif (!language || !['en', 'de', 'hu'].includes(language)) {\n  const qLower = question.toLowerCase();\n  if (/[áéíóöőúüű]/i.test(qLower) || qLower.includes('mennyi') || qLower.includes('milyen') || qLower.includes('weboldal') || qLower.includes('szolgáltatás')) {\n    language = 'hu';\n  } else if (/[äöüß]/i.test(qLower) || qLower.includes('welche') || qLower.includes('kosten') || qLower.includes('automatisierung')) {\n    language = 'de';\n  } else {\n    language = 'en';\n  }\n}\n\nlet targetModel = 'qwen2.5:7b';\nif (language === 'hu') {\n  targetModel = 'hermes3:8b';\n}\n\nlet rawFileContext = '';\ntry {\n  rawFileContext = ($('Extract Context Text').item.json.contextText || '').trim();\n} catch (e) {\n  rawFileContext = '';\n}\n\nlet servicesContext = rawFileContext;\nif (language === 'de') {\n  const deMatch = rawFileContext.match(/=== SECTION: DE ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (deMatch && deMatch[1].trim().length > 50) servicesContext = deMatch[1].trim();\n} else if (language === 'hu') {\n  const huMatch = rawFileContext.match(/=== SECTION: HU ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (huMatch && huMatch[1].trim().length > 50) servicesContext = huMatch[1].trim();\n} else {\n  const enMatch = rawFileContext.match(/=== SECTION: EN ===([\\s\\S]*?)(?:=== SECTION:|$)/i);\n  if (enMatch && enMatch[1].trim().length > 50) servicesContext = enMatch[1].trim();\n}\n\nif (!servicesContext || servicesContext.length < 50) {\n  servicesContext = 'Developer: Géza Horváth (Vienna, Austria). Contact: ghorvath@gmail.com. Services for SMBs & businesses: 1) Grounded AI Chatbots & Quote Calculators for new/existing websites, 2) Business Intelligence, Backend & Marketing Automations (n8n, APIs), 3) Full-Stack Dynamic Websites & Customizations, 4) Personal AI Assistants for Business & Work-Life Balance.';\n}\n\nlet systemPrompt = '';\nif (language === 'de') {\n  systemPrompt = `Sie sind Géza Horváths KI-Serviceberater auf seiner Entwickler-Website. Beantworten Sie Fragen potenzieller Kunden (vor allem KMU/SMBs und Unternehmen) freundlich, präzise und ausschließlich auf Basis des folgenden VERIFIZIERTEN LEISTUNGS-DOSSIERS auf Deutsch (Höflichkeitsform \"Sie\").\\n\\n### STRIKTE REGELN:\\n1. Nutzen Sie AUSSCHLIESSLICH Fakten aus dem Dossier. Erfinden Sie keine Pauschalpreise oder nicht genannten Leistungen.\\n2. Bei konkreten Projektpreisen erklären Sie kurz, dass der Preis vom Projektumfang abhängt, und laden Sie den Besucher ein, das Kontaktformular auf der Seite auszufüllen oder direkt an ghorvath@gmail.com zu schreiben.\\n3. Antworten Sie kompakt, strukturiert und kundenorientiert (2-5 Sätze oder kurze Aufzählungspunkte).\\n\\n### VERIFIZIERTES LEISTUNGS-DOSSIER:\\n${servicesContext}`;\n} else if (language === 'hu') {\n  systemPrompt = `Te Horváth Géza AI szolgáltatási tanácsadó asszisztense vagy a fejlesztői weboldalán. Válaszolj a potenciális ügyfelek és vállalkozások (főként KKV-k) kérdéseire barátságosan, lényegretörően és KIZÁRÓLAG az alábbi HITELESÍTETT SZOLGÁLTATÁSI DOSSZIÉ alapján, természetes magyarsággal.\\n\\n### SZIGORÚ SZABÁLYOK:\\n1. KIZÁRÓLAG a dossziéban szereplő tényeket használd. Ne találj ki konkrét fix árakat vagy nem létező referenciákat.\\n2. Ha konkrét árazásról kérdeznek, mondd el, hogy minden projekt egyedi igényfelméréssel indul, és javasold a weboldalon található Kapcsolat űrlap kitöltését vagy a ghorvath@gmail.com e-mail címet.\\n3. Válaszolj tömören, átláthatóan (2-5 mondat vagy rövid felsorolás).\\n\\n### HITELESÍTETT SZOLGÁLTATÁSI DOSSZIÉ:\\n${servicesContext}`;\n} else {\n  systemPrompt = `You are Géza Horváth's AI Services Concierge on his web & AI developer studio website. Answer inquiries from potential clients and business owners (primarily SMBs as well as companies of any size) warmly, clearly, and strictly from the VERIFIED SERVICES DOSSIER below.\\n\\n### STRICT GROUNDING RULES:\\n1. Use ONLY facts present in the verified dossier below. Never invent fixed price tags, fake clients, or unverified guarantees.\\n2. If asked about exact pricing or a custom quote for their project, explain that projects are scoped pragmatically around their needs after a free discovery chat, and invite them to use the Contact Me form on this page or email ghorvath@gmail.com.\\n3. Keep answers helpful, concise, and business-friendly (2-5 sentences or clean bullet points).\\n\\n### VERIFIED SERVICES DOSSIER:\\n${servicesContext}`;\n}\n\nreturn {\n  json: {\n    question: question,\n    language: language,\n    targetModel: targetModel,\n    sessionId: sessionId,\n    clientTimestamp: clientTimestamp,\n    systemPrompt: systemPrompt,\n    startTime: Date.now()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        0
+      ],
+      "id": "build-services-prompt",
+      "name": "Sanitize & Build Prompt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": {{ JSON.stringify($json.targetModel) }},\n  \"prompt\": {{ JSON.stringify($json.question) }},\n  \"system\": {{ JSON.stringify($json.systemPrompt) }},\n  \"stream\": false,\n  \"options\": {\n    \"temperature\": 0.15,\n    \"top_p\": 0.9,\n    \"num_predict\": 300\n  }\n}",
+        "options": {
+          "timeout": 45000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "ollama-services-llm",
+      "name": "Ollama LLM"
+    },
+    {
+      "parameters": {
+        "jsCode": "const prev = $('Sanitize & Build Prompt').item.json;\nconst ollamaResponse = $input.item.json;\nconst answer = (ollamaResponse.response || '').trim();\nconst durationMs = Date.now() - prev.startTime;\n\nreturn {\n  json: {\n    status: 'success',\n    answer: answer,\n    sessionId: prev.sessionId,\n    language: prev.language,\n    model: prev.targetModel,\n    durationMs: durationMs\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "format-services-response",
+      "name": "Format Response"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"answer\": {{ JSON.stringify($json.answer) }},\n  \"sessionId\": {{ JSON.stringify($json.sessionId) }},\n  \"durationMs\": {{ $json.durationMs }}\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type, Accept"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        0
+      ],
+      "id": "respond-services-webhook",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Services Context File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Services Context File": {
+      "main": [
+        [
+          {
+            "node": "Extract Context Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Context Text": {
+      "main": [
+        [
+          {
+            "node": "Sanitize & Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sanitize & Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Ollama LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama LLM": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

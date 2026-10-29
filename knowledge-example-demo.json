@@ -1,0 +1,32 @@
+{
+  "demo_company": "NordicSeal Window Insulation & Renovation (Demo SMB Showcase)",
+  "en": {
+    "fallback_general": "**NordicSeal Demo Summary:** Swedish groove-routed silicone gasket insulation costs **€12 / linear meter** (`4,500 HUF/m`), with an average standard wooden window at **4.5 m** and a **10% volume discount over 25 m**. Hardware adjustment is **€16 / sash** (`6,000 HUF`), Low-E glass upgrade is **€72 / m²**, on-site survey in Zone A (Budapest) is **free**, and all silicone profiles carry a **10-year written warranty**.",
+    "faqs": [
+      {
+        "keywords": ["6", "six", "quote", "calculat", "window"],
+        "answer": "Here is your grounded estimate for **6 standard single wooden windows** in Zone A (Budapest):\n- **Total perimeter:** 6 windows × 4.5 m = **27.0 linear meters**\n- **Base insulation subtotal:** 27.0 m × €12/m = **€324.00** (121,500 HUF)\n- **Volume discount (>25 m = -10%):** -€32.40 (-12,150 HUF)\n- **On-site survey (Zone A / Budapest):** **Free (€0)**\n- **Estimated Total:** **€291.60** (**109,350 HUF**) — completed dust-free in 1 day with a 10-year warranty!"
+      },
+      {
+        "keywords": ["30", "hardware", "sash", "adjust"],
+        "answer": "Grounded estimate for **30 m of Swedish groove insulation + 5 sash hardware adjustments**:\n- **Insulation:** 30 m × €12/m = €360.00 → minus **10% volume discount (>25 m)** = **€324.00**\n- **Hardware adjustment:** 5 sashes × €16 = **€80.00**\n- **Estimated Total:** **€404.00** (or **151,500 HUF**)."
+      },
+      {
+        "keywords": ["warranty", "dust", "long", "winter", "time"],
+        "answer": "Installation for an average home (6–10 windows) takes **just 1 working day (3–6 hours)**. Our milling tools connect directly to industrial HEPA dust extractors (virtually dust-free), sashes are only removed for 15–20 minutes one by one (safe even in winter), and every medical-grade silicone gasket comes with a **10-year written warranty**."
+      },
+      {
+        "keywords": ["area", "survey", "call-out", "budapest", "pest", "fee"],
+        "answer": "- **Zone A (Budapest):** On-site inspection and measurement is **100% FREE (€0 / 0 HUF)**.\n- **Zone B (Pest County within 35 km):** €15 (6,000 HUF) call-out fee, which is **completely waived** on orders over €120 (48,000 HUF)."
+      }
+    ]
+  },
+  "de": {
+    "fallback_general": "**NordicSeal Demo-Preisübersicht:** Schwedische Einfräs-Silikondichtung kostet **12 EUR / Laufmeter** (ca. 4,5 m pro Standardfenster; **10 % Mengenrabatt ab 25 m**). Beschlageinstellung: **16 EUR / Flügel**, Low-E Wärmeschutzglas: **72 EUR / m²**, kostenlose Besichtigung in Zone A und **10 Jahre Garantie**.",
+    "faqs": []
+  },
+  "hu": {
+    "fallback_general": "**NordicSeal Demó Összefoglaló:** A svéd bemarásos szilikon ablakszigetelés ára **4 500 Ft / folyóméter** (1 normál ablak átlagosan 4,5 fm; **25 fm felett 10% mennyiségi kedvezmény**). Vasalatbeállítás: **6 000 Ft / szárny**, Low-E hőszigetelt üvegcsere: **28 000 Ft / m²**, Budapesten **ingyenes felmérés** és **10 év írásos garancia**.",
+    "faqs": []
+  }
+}

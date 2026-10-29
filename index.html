@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Géza.ai — Custom AI Chatbots, Automations &amp; Full-Stack Web Development</title>
+  <meta name="description" content="Personal web &amp; AI developer studio offering grounded AI chatbots, quote calculators, n8n business automations, full-stack websites, and personal AI assistants for SMBs." />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Google Fonts: Space Grotesk (Eddie.eco-inspired neo-grotesque display) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chat-widgets.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       TOP ANNOUNCEMENT STRIP (Eddie.eco style)
+       ===================================================================== -->
+  <div class="top-banner">
+    <div class="top-banner-inner">
+      <span class="top-banner-pill" data-i18n="banner_badge">Live Prototype</span>
+      <span data-i18n="banner_text">Custom Grounded AI Chatbots, Automations &amp; Full-Stack Websites for Small &amp; Medium Businesses</span>
+      <a href="#examples" class="top-banner-link" data-i18n="banner_cta">Try Live Demo Chatbots ↓</a>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       STICKY FLOATING ROUNDED HEADER
+       ===================================================================== -->
+  <div class="header-wrap">
+    <div class="container" style="position: relative;">
+      <header class="site-header">
+        <a href="#top" class="brand-logo" aria-label="Géza.ai Home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 64 64" fill="none">
+              <circle cx="46" cy="17" r="9" fill="#FFF6A1"/>
+              <path d="M14 34C14 22.9543 22.9543 14 34 14H38V23H34C27.9249 23 23 27.9249 23 34C23 40.0751 27.9249 45 34 45C39.2775 45 43.6855 41.2816 44.7501 36.32H33V28.5H54V34C54 45.0457 45.0457 54 34 54C22.9543 54 14 45.0457 14 34Z" fill="#A4B885"/>
+              <circle cx="46" cy="17" r="4.5" fill="#D46D25"/>
+            </svg>
+          </span>
+          <span>Géza<span class="brand-dot">.ai</span></span>
+          <span class="brand-tag" data-i18n="brand_tag">Web · Automation · AI</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+          <a href="#about" class="nav-link" data-i18n="nav_about">About</a>
+          <a href="#services" class="nav-link" data-i18n="nav_services">Services</a>
+          <a href="#examples" class="nav-link" data-i18n="nav_examples">Live Examples</a>
+          <a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+          <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switcher" role="radiogroup" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" data-lang="en" aria-checked="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="de" aria-checked="false">DE</button>
+            <button type="button" class="lang-btn" data-lang="hu" aria-checked="false">HU</button>
+          </div>
+
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="nav_cta">Start a Project →</a>
+
+          <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="7" x2="20" y2="7"/>
+              <line x1="4" y1="12" x2="20" y2="12"/>
+              <line x1="4" y1="17" x2="20" y2="17"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <main id="top">
+    <!-- ===================================================================
+         HERO SECTION (Eddie.eco Modular Split + Site Services AI Concierge)
+         =================================================================== -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Hero Bento Card -->
+          <div class="hero-copy-card">
+            <div>
+              <div class="eyebrow-badge">
+                <span class="eyebrow-dot"></span>
+                <span data-i18n="hero_eyebrow">Independent Web, Automation &amp; AI Developer · Built for SMBs &amp; Growing Teams</span>
+              </div>
+
+              <h1 class="hero-headline" data-i18n-html="hero_headline_html">
+                Smart websites, <span class="highlight-pill">grounded AI</span> &amp; automations that work <span class="highlight-underline">24/7 for your business.</span>
+              </h1>
+
+              <p class="hero-lead" data-i18n="hero_lead">
+                I help small-to-medium businesses (and teams of any size) embed intelligent AI chatbots that answer questions and calculate quotes from your real documents, automate repetitive backend &amp; marketing workflows, and launch fast full-stack websites.
+              </p>
+
+              <div class="hero-cta-row" style="margin-top: 26px;">
+                <a href="#examples" class="btn btn-primary" data-i18n="hero_btn_primary">Explore Live Examples ↓</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero_btn_secondary">Tell Me About Your Project</a>
+              </div>
+            </div>
+
+            <div class="hero-pillars-strip">
+              <div class="mini-pillar">
+                <span class="mini-pillar-icon" aria-hidden="true">🎯</span>
+                <span data-i18n="hero_p1">Grounded Zero-Hallucination AI</span>
+              </div>
+              <div class="mini-pillar">
+                <span class="mini-pillar-icon" aria-hidden="true">⚡</span>
+                <span data-i18n="hero_p2">Backend &amp; Marketing Workflows</span>
+              </div>
+              <div class="mini-pillar">
+                <span class="mini-pillar-icon" aria-hidden="true">🛠️</span>
+                <span data-i18n="hero_p3">Turnkey Full-Stack Websites</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Bento Card: CHATBOT #1 (Géza's Personal Services AI Concierge) -->
+          <aside class="hero-ai-card" aria-label="Géza's AI Services Concierge">
+            <div class="hero-ai-ribbon">
+              <span data-i18n="hero_ai_ribbon">🤖 Site Concierge · Powered by Mac mini n8n</span>
+              <span>EN · DE · HU</span>
+            </div>
+
+            <!-- Mounted via GezaChatEngine -> /webhook/services-chat -->
+            <div id="hero-services-chat"></div>
+
+            <p class="hero-ai-note" data-i18n="hero_ai_note">
+              💡 Separate from the Examples Demo Bot below — ask this assistant anything about Géza, his 4 developer services, or how an integration works!
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 1: ABOUT ME & BRIEF SERVICES OVERVIEW (#about & #services)
+         =================================================================== -->
+    <section id="about" class="page-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker" data-i18n="about_kicker">01 · About &amp; What I Develop</span>
+          <h2 class="section-title" data-i18n="about_title">Enterprise-grade engineering, tailored to real small &amp; medium business needs.</h2>
+          <p class="section-subtitle" data-i18n="about_subtitle">
+            Initial overview text (ready to customize with your concrete bio &amp; story). Direct collaboration with one senior developer from idea to production.
+          </p>
+        </div>
+
+        <div class="about-bento-top">
+          <div class="about-story-card">
+            <div class="about-profile-row">
+              <div class="about-avatar" aria-hidden="true">GH</div>
+              <div>
+                <h3 class="about-name">Géza Horváth</h3>
+                <p class="about-role" data-i18n="about_role">Full-Stack Web, Workflow Automation &amp; AI Developer</p>
+              </div>
+            </div>
+
+            <p data-i18n="about_p1">
+              Hi, I'm Géza Horváth — a Vienna-area software architect and full-stack developer with 8+ years of enterprise workflow and platform engineering experience. Today, I bring that same reliability and clean architecture directly to small and medium businesses without agency overhead.
+            </p>
+            <p data-i18n="about_p2">
+              Whether you already have a website that needs an intelligent AI quote assistant, drown in repetitive admin emails and spreadsheets, or need a brand-new dynamic web platform built from scratch, I design practical systems that pay for themselves in saved hours and captured leads.
+            </p>
+
+            <span class="about-placeholder-badge" data-i18n="about_placeholder_note">
+              ✏️ Initial draft text — structured for quick replacement with final bio copy
+            </span>
+          </div>
+
+          <div class="about-summary-card">
+            <h3 data-i18n="about_glance_title">What I Build at a Glance</h3>
+            <ul class="about-quick-list">
+              <li>
+                <span class="about-quick-num">01</span>
+                <span data-i18n="about_g1">Grounded AI Chatbots &amp; Instant Quote Calculators</span>
+              </li>
+              <li>
+                <span class="about-quick-num">02</span>
+                <span data-i18n="about_g2">Business Intelligence, Backend &amp; Marketing Automations</span>
+              </li>
+              <li>
+                <span class="about-quick-num">03</span>
+                <span data-i18n="about_g3">Full-Stack Dynamic Websites &amp; Existing Site Upgrades</span>
+              </li>
+              <li>
+                <span class="about-quick-num">04</span>
+                <span data-i18n="about_g4">Personal AI Assistants for Work-Life Balance</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4 CORE SERVICES MODULAR BENTO GRID -->
+        <div id="services" style="padding-top: 36px;">
+          <div class="section-header" style="margin-bottom: 28px;">
+            <span class="section-kicker" data-i18n="services_kicker">Core Offerings</span>
+            <h2 class="section-title" data-i18n="services_title">Four ways we can upgrade your business.</h2>
+            <p class="section-subtitle" data-i18n="services_subtitle">
+              Modular services you can adopt one step at a time — embed a single smart bot into your current website or build a complete automated web platform.
+            </p>
+          </div>
+
+          <div class="services-bento-grid">
+            <!-- Service 1 -->
+            <article class="service-card card-terracotta">
+              <div>
+                <div class="service-card-top">
+                  <div class="service-icon-box" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      <path d="M8 9h8"/>
+                      <path d="M8 13h5"/>
+                    </svg>
+                  </div>
+                  <span class="service-num-pill">SERVICE 01</span>
+                </div>
+                <h3 data-i18n="s1_title">Intelligent AI Chatbots &amp; Quote Calculators</h3>
+                <p data-i18n="s1_desc">
+                  Custom AI chatbots built and embedded seamlessly into your existing website or a new site. Strictly grounded in your business's verified context documentation to answer service questions 24/7, perform live calculations, generate estimates/quotes, and capture leads without hallucinations.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag" data-i18n="s1_t1">Existing or New Websites</span>
+                  <span class="service-tag" data-i18n="s1_t2">Grounded Context Docs</span>
+                  <span class="service-tag" data-i18n="s1_t3">Live Quote &amp; Price Math</span>
+                </div>
+              </div>
+              <a href="#contact" class="service-card-cta" data-select-service="Intelligent AI Chatbot & Quote Calculator" data-i18n="s1_cta">Discuss an AI Chatbot →</a>
+            </article>
+
+            <!-- Service 2 -->
+            <article class="service-card card-sage">
+              <div>
+                <div class="service-card-top">
+                  <div class="service-icon-box" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="3" width="6" height="6" rx="1.5"/>
+                      <rect x="16" y="3" width="6" height="6" rx="1.5"/>
+                      <rect x="9" y="15" width="6" height="6" rx="1.5"/>
+                      <path d="M5 9v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/>
+                      <path d="M12 14v1"/>
+                    </svg>
+                  </div>
+                  <span class="service-num-pill">SERVICE 02</span>
+                </div>
+                <h3 data-i18n="s2_title">Business Intelligence, Automation &amp; Workflows</h3>
+                <p data-i18n="s2_desc">
+                  End-to-end operational, backend, and marketing automations across your tools (n8n, APIs, webhooks, databases, CRM). Automate lead triage, instant notifications, invoicing, campaign follow-ups, and BI reporting so manual copy-pasting disappears.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag" data-i18n="s2_t1">Backend &amp; API Workflows</span>
+                  <span class="service-tag" data-i18n="s2_t2">Marketing Automations</span>
+                  <span class="service-tag" data-i18n="s2_t3">BI &amp; Reporting Pipelines</span>
+                </div>
+              </div>
+              <a href="#contact" class="service-card-cta" data-select-service="Business Intelligence & Workflow Automation" data-i18n="s2_cta">Automate a Workflow →</a>
+            </article>
+
+            <!-- Service 3 -->
+            <article class="service-card card-peach">
+              <div>
+                <div class="service-card-top">
+                  <div class="service-icon-box" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="3"/>
+                      <path d="M3 9h18"/>
+                      <path d="M9 21V9"/>
+                    </svg>
+                  </div>
+                  <span class="service-num-pill">SERVICE 03</span>
+                </div>
+                <h3 data-i18n="s3_title">Full-Stack Websites &amp; Customizations</h3>
+                <p data-i18n="s3_desc">
+                  Dynamic full-stack websites built from scratch — complete with databases, smart forms, automated email acknowledgements, marketing campaigns, and submission workflows — or targeted feature upgrades, SEO, and redesigns for your existing website.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag" data-i18n="s3_t1">Databases &amp; Dynamic Forms</span>
+                  <span class="service-tag" data-i18n="s3_t2">Email Acknowledgements</span>
+                  <span class="service-tag" data-i18n="s3_t3">Existing Site Upgrades</span>
+                </div>
+              </div>
+              <a href="#contact" class="service-card-cta" data-select-service="Full-Stack Website / Existing Site Customization" data-i18n="s3_cta">Plan a Website Project →</a>
+            </article>
+
+            <!-- Service 4 -->
+            <article class="service-card card-butter">
+              <div>
+                <div class="service-card-top">
+                  <div class="service-icon-box" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2a7 7 0 0 0-7 7c0 2.9 1.75 5.4 4.25 6.45V18a2 2 0 0 0 2 2h1.5a2 2 0 0 0 2-2v-2.55C17.25 14.4 19 11.9 19 9a7 7 0 0 0-7-7z"/>
+                      <path d="M9 22h6"/>
+                    </svg>
+                  </div>
+                  <span class="service-num-pill">SERVICE 04</span>
+                </div>
+                <h3 data-i18n="s4_title">Personal AI Assistants for Work-Life Balance</h3>
+                <p data-i18n="s4_desc">
+                  Tailored private AI assistants designed around your business and personal daily rhythm. Delegate inbox summaries, morning briefings, knowledge lookups, reminders, and recurring admin routines so you reclaim focus and genuine work-life balance.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag" data-i18n="s4_t1">Daily Briefings &amp; Triage</span>
+                  <span class="service-tag" data-i18n="s4_t2">Private Knowledge Base</span>
+                  <span class="service-tag" data-i18n="s4_t3">Work-Life Balance</span>
+                </div>
+              </div>
+              <a href="#contact" class="service-card-cta" data-select-service="Personal AI Assistant (Work-Life Balance)" data-i18n="s4_cta">Design a Personal AI →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 2: LIVE EXAMPLES & INTERACTIVE SHOWCASE (#examples)
+         =================================================================== -->
+    <section id="examples" class="page-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker" data-i18n="examples_kicker">02 · Live Examples &amp; Interactive Demos</span>
+          <h2 class="section-title" data-i18n="examples_title">See real production work &amp; test a live quote chatbot.</h2>
+          <p class="section-subtitle" data-i18n="examples_subtitle">
+            Don't just read promises — inspect a live client website in production and test a live grounded SMB quote-calculator chatbot running on my Mac mini n8n server right now.
+          </p>
+        </div>
+
+        <div class="examples-stack">
+          <!-- LIVE EXAMPLE 1: www.ablakszigeteles.hu -->
+          <article class="example-website-card">
+            <div>
+              <div class="live-badge-row">
+                <span class="live-pill" data-i18n="ex1_badge">🟢 Live Production Website</span>
+                <span class="domain-pill">www.ablakszigeteles.hu</span>
+              </div>
+
+              <h3 data-i18n="ex1_title">Ablakszigetelés.hu — High-Converting SMB Service Website</h3>
+              <p data-i18n="ex1_desc">
+                A live production website engineered for a window insulation and wooden window renovation specialist in Budapest &amp; Pest County — combining fast editorial design, Local SEO, and automated n8n lead alerts.
+              </p>
+
+              <ul class="feature-check-list">
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span data-i18n="ex1_f1">Local SEO &amp; Schema.org JSON-LD structured business data</span>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span data-i18n="ex1_f2">Smart service inquiry form wired into Mac mini n8n webhook &amp; instant SMTP email alerts</span>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span data-i18n="ex1_f3">Mobile-first responsive performance &amp; clear conversion architecture</span>
+                </li>
+              </ul>
+
+              <div class="hero-cta-row">
+                <a href="https://www.ablakszigeteles.hu" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="ex1_visit_btn">
+                  Visit www.ablakszigeteles.hu ↗
+                </a>
+                <a href="#contact" class="btn btn-secondary" data-select-service="Full-Stack Website / Existing Site Customization" data-i18n="ex1_similar_btn">
+                  Request Similar Website
+                </a>
+              </div>
+            </div>
+
+            <!-- Stylized Browser Preview Card -->
+            <a href="https://www.ablakszigeteles.hu" target="_blank" rel="noopener noreferrer" class="browser-frame" aria-label="Open www.ablakszigeteles.hu in a new tab">
+              <div class="browser-bar">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
+                <div class="browser-url">
+                  <span>🔒 https://www.ablakszigeteles.hu</span>
+                  <span>↗</span>
+                </div>
+              </div>
+              <div class="browser-viewport">
+                <span class="mock-kicker">SVÉD BEMARÁSOS TECHNOLÓGIA · BUDAPEST &amp; PEST MEGYE</span>
+                <h4 class="mock-heading">Ablakszigetelés &amp; Fa Nyílászáró Felújítás</h4>
+                <p class="mock-desc">
+                  Professzionális svéd bemarásos szilikon ablakszigetelés, hőszigetelt Low-E üvegcsere és vasalatjavítás bontás nélkül — n8n automatizált ajánlatkérő rendszerrel.
+                </p>
+                <div class="mock-metrics">
+                  <div class="mock-metric-box">
+                    <span class="mock-metric-val">-90%</span>
+                    <span class="mock-metric-lbl">Draft Reduction</span>
+                  </div>
+                  <div class="mock-metric-box">
+                    <span class="mock-metric-val">n8n</span>
+                    <span class="mock-metric-lbl">Instant Email Alerts</span>
+                  </div>
+                  <div class="mock-metric-box">
+                    <span class="mock-metric-val">SEO+</span>
+                    <span class="mock-metric-lbl">Schema.org Local</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- LIVE EXAMPLE 2: EMBEDDED SMB DEMO CHATBOT (SEPARATE N8N WORKFLOW!) -->
+          <article class="example-chatbot-showcase">
+            <div class="demo-explainer">
+              <div class="live-badge-row">
+                <span class="live-pill" data-i18n="ex2_badge">🧪 Live Interactive n8n Demo</span>
+                <span class="domain-pill" data-i18n="ex2_domain">Separate Demo Bot · Grounded Price &amp; Quote Engine</span>
+              </div>
+
+              <h3 data-i18n="ex2_title">Try It Live: SMB Service &amp; Quote Calculator Chatbot</h3>
+              <p data-i18n="ex2_desc">
+                This embedded chatbot simulates a real customer-facing assistant for "NordicSeal Window Insulation" (inspired by ablakszigeteles.hu). It runs live on my Mac mini's n8n + local LLM pipeline and calculates accurate quotes strictly from the business's grounded pricing sheet.
+              </p>
+
+              <div class="demo-pricing-cheat">
+                <h4 data-i18n="ex2_cheat_title">Sample Grounded Facts Loaded on Mac mini n8n:</h4>
+                <ul>
+                  <li data-i18n="ex2_c1">Swedish silicone gasket routing: €12 / linear meter (1 standard window ≈ 4.5 m)</li>
+                  <li data-i18n="ex2_c2">Automatic 10% volume discount when total exceeds 25 linear meters</li>
+                  <li data-i18n="ex2_c3">Hardware adjustment: €16 / sash · Low-E glass upgrade: €72 / m²</li>
+                  <li data-i18n="ex2_c4">Free survey in Zone A (Budapest) &amp; 10-year written silicone warranty</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Mounted via GezaChatEngine -> /webhook/example-demo-chat -->
+            <div class="demo-bot-mount-card">
+              <div id="example-live-demo-chat"></div>
+            </div>
+          </article>
+
+          <!-- FUTURE EXAMPLES SLOTS -->
+          <div class="future-examples-grid">
+            <div class="future-example-slot">
+              <div>
+                <h4 data-i18n="future1_title">Multi-Step Marketing &amp; CRM Automation Showcase</h4>
+                <p data-i18n="future1_desc">Additional live workflow walkthrough to be added here soon.</p>
+              </div>
+              <span class="coming-soon-pill" data-i18n="coming_soon">Coming Soon</span>
+            </div>
+            <div class="future-example-slot">
+              <div>
+                <h4 data-i18n="future2_title">Executive Personal AI Briefing Assistant Demo</h4>
+                <p data-i18n="future2_desc">Telegram &amp; web personal assistant case study to be added here soon.</p>
+              </div>
+              <span class="coming-soon-pill" data-i18n="coming_soon">Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: FAQ SECTION (#faq)
+         =================================================================== -->
+    <section id="faq" class="page-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker" data-i18n="faq_kicker">03 · Frequently Asked Questions</span>
+          <h2 class="section-title" data-i18n="faq_title">Common questions (initial placeholder FAQs).</h2>
+        </div>
+
+        <div class="faq-layout">
+          <div class="faq-intro-card">
+            <h3 data-i18n="faq_intro_title">Still wondering how it fits your business?</h3>
+            <p data-i18n="faq_intro_desc">
+              These initial FAQs cover common SMB questions and can be replaced with concrete details anytime. Or test Géza's AI Concierge right away!
+            </p>
+            <button type="button" class="btn btn-dark" id="faq-open-concierge-btn" data-i18n="faq_ask_ai_btn">
+              Ask Géza's AI Concierge ✨
+            </button>
+          </div>
+
+          <div class="faq-list" id="faq-accordion">
+            <div class="faq-item is-open">
+              <button type="button" class="faq-question-btn" aria-expanded="true">
+                <span data-i18n="faq1_q">Can you embed an AI chatbot into my existing website without rebuilding it?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap" style="max-height: 240px;">
+                <div class="faq-answer-inner" data-i18n="faq1_a">
+                  Yes! The chatbot is packaged as a lightweight, self-contained widget that drops cleanly into existing websites (WordPress, static HTML, Shopify, React/Vue, or custom CMS) while matching your brand colors and typography.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span data-i18n="faq2_q">How do you make sure the chatbot doesn't invent wrong prices or fake promises?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap">
+                <div class="faq-answer-inner" data-i18n="faq2_a">
+                  Every chatbot uses strict Context Grounding: it reads exclusively from your approved business documentation, pricing tables, and calculation rules. If a visitor asks something outside your documents, it politely directs them to contact you directly instead of guessing.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span data-i18n="faq3_q">Where are the AI models and n8n automations hosted? Is our data private?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap">
+                <div class="faq-answer-inner" data-i18n="faq3_a">
+                  You have full flexibility: workflows and AI models can run on private, self-hosted hardware/VPS (so sensitive customer data never leaks to third parties) or connect to leading cloud AI APIs depending on your speed, volume, and compliance preferences.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span data-i18n="faq4_q">What size of businesses do you work with?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap">
+                <div class="faq-answer-inner" data-i18n="faq4_a">
+                  Primarily small and medium businesses (local service companies, trades, clinics, consultants, e-commerce, boutique agencies), while also supporting larger teams that want fast, senior-level automation and web engineering.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span data-i18n="faq5_q">Can we update our business prices or FAQ documents later without coding?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap">
+                <div class="faq-answer-inner" data-i18n="faq5_a">
+                  Absolutely. Your business context lives in clean, human-readable documents (Markdown, spreadsheets, or a simple admin form), so updating a unit rate or service area immediately updates the chatbot's answers.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span data-i18n="faq6_q">How do we get started and what does a typical project timeline look like?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer-wrap">
+                <div class="faq-answer-inner" data-i18n="faq6_a">
+                  Send a short message via the Contact Me form below. We'll have a quick discovery chat, define a clear fixed scope, and most embedded chatbots or automations launch as a working prototype within 1–2 weeks (full-stack websites typically 2–5 weeks).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4: CONTACT ME FORM (#contact — Alerts via Mac mini n8n)
+         =================================================================== -->
+    <section id="contact" class="page-section">
+      <div class="container">
+        <div class="contact-shell">
+          <div class="contact-info-side">
+            <span class="section-kicker" data-i18n="contact_kicker">04 · Contact Me</span>
+            <h2 data-i18n="contact_title">Let's build something genuinely useful for your business.</h2>
+            <p data-i18n="contact_desc">
+              Fill out the form and my Mac mini's n8n workflow will store your inquiry and alert me immediately via email. I typically reply within 24 hours.
+            </p>
+
+            <div class="contact-direct-cards">
+              <div class="direct-chip">
+                <div>
+                  <span class="direct-chip-label" data-i18n="contact_email_lbl">Direct Email</span>
+                  <span class="direct-chip-val">ghorvath@gmail.com</span>
+                </div>
+                <button type="button" class="copy-chip-btn" id="copy-email-btn" data-i18n="contact_copy_btn">Copy</button>
+              </div>
+
+              <div class="direct-chip">
+                <div>
+                  <span class="direct-chip-label" data-i18n="contact_loc_lbl">Base &amp; Availability</span>
+                  <span class="direct-chip-val" data-i18n="contact_loc_val">Vienna Area, Austria · Remote Europe &amp; Worldwide</span>
+                </div>
+              </div>
+
+              <div class="direct-chip">
+                <div>
+                  <span class="direct-chip-label" data-i18n="contact_engine_lbl">Alert Pipeline</span>
+                  <span class="direct-chip-val" data-i18n="contact_engine_val">Instant Email Alert via Self-Hosted n8n</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lead Capture Form -->
+          <div class="contact-form-card">
+            <form id="services-contact-form" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="c-name"><span data-i18n="form_name_lbl">Your Name</span> <span class="req-star">*</span></label>
+                  <input type="text" id="c-name" class="form-control" placeholder="e.g. Alex Kovács" data-i18n-attr="placeholder:form_name_ph" required />
+                  <span class="field-error" id="err-c-name"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="c-email"><span data-i18n="form_email_lbl">Email Address</span> <span class="req-star">*</span></label>
+                  <input type="email" id="c-email" class="form-control" placeholder="alex@yourbusiness.com" data-i18n-attr="placeholder:form_email_ph" required />
+                  <span class="field-error" id="err-c-email"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="c-company" data-i18n="form_company_lbl">Business / Company (Optional)</label>
+                  <input type="text" id="c-company" class="form-control" placeholder="Your company or website URL" data-i18n-attr="placeholder:form_company_ph" />
+                </div>
+
+                <div class="form-field">
+                  <label for="c-phone" data-i18n="form_phone_lbl">Phone / WhatsApp (Optional)</label>
+                  <input type="tel" id="c-phone" class="form-control" placeholder="+43 ... / +36 ..." data-i18n-attr="placeholder:form_phone_ph" />
+                </div>
+
+                <div class="form-field full">
+                  <label for="c-service" data-i18n="form_service_lbl">Service You're Interested In</label>
+                  <select id="c-service" class="form-control">
+                    <option value="Intelligent AI Chatbot & Quote Calculator" data-i18n="form_opt_1">Intelligent AI Chatbot &amp; Quote Calculator</option>
+                    <option value="Business Intelligence & Workflow Automation" data-i18n="form_opt_2">Business Intelligence &amp; Workflow Automation</option>
+                    <option value="Full-Stack Website / Existing Site Customization" data-i18n="form_opt_3">Full-Stack Website / Existing Site Customization</option>
+                    <option value="Personal AI Assistant (Work-Life Balance)" data-i18n="form_opt_4">Personal AI Assistant (Work-Life Balance)</option>
+                    <option value="Multiple Services / General Consultation" data-i18n="form_opt_5">Multiple Services / General Consultation</option>
+                  </select>
+                </div>
+
+                <div class="form-field full">
+                  <label for="c-message"><span data-i18n="form_msg_lbl">Tell Me About Your Project or Bottleneck</span> <span class="req-star">*</span></label>
+                  <textarea id="c-message" class="form-control" placeholder="What would you like to build, automate, or improve?" data-i18n-attr="placeholder:form_msg_ph" required></textarea>
+                  <span class="field-error" id="err-c-message"></span>
+                </div>
+              </div>
+
+              <div class="form-submit-row">
+                <span class="form-privacy-note" data-i18n="form_privacy">🔒 Delivered directly to Géza via encrypted n8n webhook. Zero spam.</span>
+                <button type="submit" class="btn btn-primary" id="c-submit-btn">
+                  <span class="submit-btn-label" data-i18n="form_submit_btn">Send Message &amp; Alert Géza →</span>
+                </button>
+              </div>
+
+              <div id="c-status-banner" class="contact-status-banner" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       ROUNDED FOOTER
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card">
+        <a href="#top" class="brand-logo">
+          <span>Géza<span class="brand-dot">.ai</span></span>
+        </a>
+
+        <div class="footer-links">
+          <a href="#about" data-i18n="nav_about">About</a>
+          <a href="#services" data-i18n="nav_services">Services</a>
+          <a href="#examples" data-i18n="nav_examples">Live Examples</a>
+          <a href="https://www.ablakszigeteles.hu" target="_blank" rel="noopener noreferrer">Ablakszigetelés.hu ↗</a>
+          <a href="https://github.com/ritalinbob" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/geza-horvath-16288a185" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
+
+        <div class="footer-copy" data-i18n="footer_copy">
+          © 2026 Géza Horváth · Web, Automation &amp; AI Developer Studio. Powered by self-hosted n8n.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       FLOATING BOTTOM-RIGHT SITE CONCIERGE DRAWER
+       (Same Services AI Concierge as Hero, reachable anywhere on scroll!)
+       ===================================================================== -->
+  <button type="button" class="floating-concierge-Launcher" id="floating-concierge-btn" aria-expanded="false" aria-controls="floating-concierge-drawer">
+    <span class="launcher-orb-mini" aria-hidden="true"></span>
+    <span data-i18n="floating_btn">Ask Géza's AI</span>
+  </button>
+
+  <div class="floating-concierge-drawer" id="floating-concierge-drawer" role="dialog" aria-label="Géza's AI Services Concierge">
+    <button type="button" class="drawer-close-top" id="floating-drawer-close" aria-label="Close AI Concierge">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div id="floating-services-chat"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="translations.js"></script>
+  <script src="chat-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

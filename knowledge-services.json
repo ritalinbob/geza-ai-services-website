@@ -1,0 +1,55 @@
+{
+  "studio": "Géza Horváth — Web, Automation & AI Services",
+  "contact_email": "ghorvath@gmail.com",
+  "en": {
+    "fallback_general": "Géza Horváth builds **1) Grounded AI Chatbots & Quote Calculators** for existing or new websites, **2) Business Intelligence, Backend & Marketing Automations** (n8n, APIs, workflows), **3) Full-Stack Dynamic Websites & Customizations**, and **4) Personal AI Assistants** for work-life balance. Feel free to use the Contact Me form below or email [ghorvath@gmail.com](mailto:ghorvath@gmail.com)!",
+    "faqs": [
+      {
+        "keywords": ["chatbot", "quote", "calculat", "document", "hallucinat", "existing"],
+        "answer": "Géza builds intelligent AI chatbots that embed cleanly into **your existing website or a brand-new site**. Every bot is strictly grounded in your business's verified documents (price sheets, service catalogs, policies) so it answers customer questions 24/7, calculates custom estimates/quotes on the fly, and never invents unverified facts."
+      },
+      {
+        "keywords": ["automat", "workflow", "n8n", "backend", "marketing", "bi", "intelligence"],
+        "answer": "Géza engineers end-to-end **Business Intelligence, backend, and marketing automations** (using n8n, REST APIs, webhooks, and databases) — automating lead capture, instant email/Telegram alerts, CRM sync, invoicing workflows, campaign follow-ups, and operational reporting."
+      },
+      {
+        "keywords": ["website", "full stack", "fullstack", "database", "form", "customiz", "ablakszigeteles"],
+        "answer": "Géza develops **full-stack dynamic websites from scratch** (databases, smart forms, automated email acknowledgements, campaigns, and submission workflows) and also **customizes or modernizes existing websites** — just like the live production client site [www.ablakszigeteles.hu](https://www.ablakszigeteles.hu)."
+      },
+      {
+        "keywords": ["personal", "assistant", "work-life", "balance", "daily", "time"],
+        "answer": "Géza builds **private personal AI assistants** tailored to business owners and busy professionals — automating daily briefings, inbox triage, personal knowledge Q&A, and routine reminders so you can reclaim hours every week and protect your work-life balance."
+      },
+      {
+        "keywords": ["price", "cost", "how much", "budget", "start"],
+        "answer": "Every engagement starts with a free discovery chat and is scoped pragmatically for SMB budgets — whether you want a quick embedded AI bot/workflow in days or a full-stack platform. Send your idea via the **Contact Me** form below or email [ghorvath@gmail.com](mailto:ghorvath@gmail.com) for a tailored quote."
+      }
+    ]
+  },
+  "de": {
+    "fallback_general": "Géza Horváth entwickelt für KMU und Unternehmen: **1) Faktenbasierte KI-Chatbots & Angebotsrechner**, **2) Business Intelligence, Backend- & Marketing-Automatisierungen**, **3) Dynamische Full-Stack-Websites & Anpassungen** sowie **4) Persönliche KI-Assistenten** für eine bessere Work-Life-Balance. Nutzen Sie gerne das Kontaktformular oder schreiben Sie an [ghorvath@gmail.com](mailto:ghorvath@gmail.com).",
+    "faqs": [
+      {
+        "keywords": ["chatbot", "angebot", "rechner", "dokument", "website"],
+        "answer": "Géza entwickelt KI-Chatbots für **bestehende oder neue Websites**, die strikt auf Ihren echten Geschäftsdokumenten und Preislisten basieren — inklusive Live-Angebotsberechnung ohne Halluzinationen."
+      },
+      {
+        "keywords": ["automat", "workflow", "n8n", "backend", "marketing"],
+        "answer": "Géza baut maßgeschneiderte **Backend-, BI- und Marketing-Automatisierungen** (n8n, APIs, Webhooks, Datenbanken), die manuelle Routinearbeit zuverlässig ersetzen."
+      }
+    ]
+  },
+  "hu": {
+    "fallback_general": "Horváth Géza 4 fő területen segíti a KKV-kat és vállalkozásokat: **1) Tényalapú AI Chatbotok és Árkalkulátorok** meglévő vagy új weboldalakba, **2) Üzleti Intelligencia (BI), Backend és Marketing Automatizáció**, **3) Full-Stack Dinamikus Weboldalak és Testreszabás**, valamint **4) Személyes AI Asszisztensek** a jobb munka–magánélet egyensúlyért. Keress bizalommal a Kapcsolat űrlapon vagy a [ghorvath@gmail.com](mailto:ghorvath@gmail.com) címen!",
+    "faqs": [
+      {
+        "keywords": ["chatbot", "kalkul", "árajánlat", "dokument", "meglévő"],
+        "answer": "Géza olyan intelligens AI chatbotokat fejleszt és épít be **meglévő vagy új weboldalakba**, amelyek szigorúan a céged saját dokumentációjából és árlistájából válaszolnak 0–24-ben, és valós idejű árkalkulációt is készítenek."
+      },
+      {
+        "keywords": ["automatiz", "munkafolyamat", "n8n", "marketing", "backend"],
+        "answer": "Géza teljes körű **üzleti intelligencia, backend és marketing automatizációkat** épít (n8n, API-k, adatbázisok, azonnali e-mail riasztások), kiváltva az ismétlődő adminisztrációt."
+      }
+    ]
+  }
+}

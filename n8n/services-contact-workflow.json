@@ -1,0 +1,144 @@
+{
+  "name": "Services Website Contact Alert (Geza Web Services)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "services-contact",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        0
+      ],
+      "id": "services-contact-webhook",
+      "name": "Webhook Trigger",
+      "webhookId": "geza-services-contact-v1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook Trigger').item.json;\nconst body = webhookData.body || webhookData;\n\nconst rawName = (body.name || '').trim();\nconst rawEmail = (body.email || '').trim().toLowerCase();\nconst rawCompany = (body.company || '').trim();\nconst rawService = (body.serviceInterest || body.roleOrInterest || 'AI Chatbot & Web Development').trim();\nconst rawPhone = (body.phone || '').trim();\nconst rawMessage = (body.message || '').trim();\nconst rawSource = (body.source || 'geza-ai-services-website').trim();\n\nif (!rawName) throw new Error('Name is required');\nif (!rawEmail || !rawEmail.includes('@')) {\n  throw new Error('Valid email address is required');\n}\nif (!rawMessage) throw new Error('Message is required');\n\nconst submissionId = 'srv_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 7);\nconst now = new Date();\nconst formattedDate = now.toUTCString();\n\nconst emailSubject = `🚀 New Client Lead: ${rawName}${rawCompany ? ' (' + rawCompany + ')' : ''} — ${rawService}`;\n\nfunction escapeHtml(str) {\n  if (!str) return '';\n  return str.replace(/&/g, '&amp;')\n            .replace(/</g, '&lt;')\n            .replace(/>/g, '&gt;')\n            .replace(/\"/g, '&quot;')\n            .replace(/'/g, '&#039;');\n}\n\nconst emailHtml = `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #FAF8F2; margin: 0; padding: 24px; color: #1C211A; }\n    .email-container { max-width: 600px; margin: 0 auto; background: #FFFFFF; border-radius: 24px; overflow: hidden; border: 1px solid #E3E7DC; box-shadow: 0 8px 28px rgba(28,33,26,0.08); }\n    .header { background: #1C211A; color: #FFFFFF; padding: 26px 28px; text-align: left; border-bottom: 4px solid #A4B885; }\n    .header h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: #FFF6A1; }\n    .header p { margin: 6px 0 0 0; font-size: 13px; color: #D4DDD0; }\n    .content { padding: 28px; }\n    .badge { display: inline-block; background: #FFF6A1; color: #1C211A; border: 1px solid #A4B885; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }\n    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }\n    .info-table td { padding: 11px 12px; font-size: 14px; border-bottom: 1px solid #F0EEE6; }\n    .info-table td.label { font-weight: 700; color: #525B4C; width: 145px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }\n    .info-table td.val { color: #1C211A; }\n    .message-box { background: #FFF9F2; border-left: 4px solid #D46D25; padding: 18px 20px; border-radius: 12px; margin-top: 8px; margin-bottom: 24px; }\n    .message-box h4 { margin: 0 0 8px 0; font-size: 12px; font-weight: 700; color: #D46D25; text-transform: uppercase; letter-spacing: 0.05em; }\n    .message-box p { margin: 0; font-size: 14.5px; line-height: 1.6; white-space: pre-wrap; color: #1C211A; }\n    .cta-btn { display: inline-block; background: #D46D25; color: #FFFFFF !important; text-decoration: none; font-weight: 700; font-size: 13.5px; padding: 13px 26px; border-radius: 999px; margin-bottom: 12px; }\n    .footer { background: #F4F6EF; padding: 16px 28px; font-size: 11.5px; color: #525B4C; border-top: 1px solid #E3E7DC; }\n  </style>\n</head>\n<body>\n  <div class=\"email-container\">\n    <div class=\"header\">\n      <h1>Géza.ai — Web, Automation &amp; AI Services</h1>\n      <p>New Potential Client Inquiry Alert</p>\n    </div>\n    <div class=\"content\">\n      <span class=\"badge\">${escapeHtml(rawService)}</span>\n      <table class=\"info-table\">\n        <tr>\n          <td class=\"label\">Client Name</td>\n          <td class=\"val\"><strong>${escapeHtml(rawName)}</strong></td>\n        </tr>\n        <tr>\n          <td class=\"label\">Email Address</td>\n          <td class=\"val\"><a href=\"mailto:${escapeHtml(rawEmail)}\" style=\"color:#D46D25;font-weight:600;\">${escapeHtml(rawEmail)}</a></td>\n        </tr>\n        <tr>\n          <td class=\"label\">Business / Company</td>\n          <td class=\"val\">${rawCompany ? escapeHtml(rawCompany) : '<em style=\"color:#7D8677;\">Not specified</em>'}</td>\n        </tr>\n        <tr>\n          <td class=\"label\">Service Pillar</td>\n          <td class=\"val\">${escapeHtml(rawService)}</td>\n        </tr>\n        <tr>\n          <td class=\"label\">Phone</td>\n          <td class=\"val\">${rawPhone ? escapeHtml(rawPhone) : '<em style=\"color:#7D8677;\">Not provided</em>'}</td>\n        </tr>\n        <tr>\n          <td class=\"label\">Received At</td>\n          <td class=\"val\">${escapeHtml(formattedDate)}</td>\n        </tr>\n        <tr>\n          <td class=\"label\">Reference ID</td>\n          <td class=\"val\"><code>${escapeHtml(submissionId)}</code></td>\n        </tr>\n      </table>\n\n      <div class=\"message-box\">\n        <h4>Project Details &amp; Goals:</h4>\n        <p>${escapeHtml(rawMessage)}</p>\n      </div>\n\n      <div>\n        <a href=\"mailto:${escapeHtml(rawEmail)}?subject=${encodeURIComponent('Re: ' + rawService + ' — Géza Horváth')}\" class=\"cta-btn\">\n          Reply to ${escapeHtml(rawName)} &rarr;\n        </a>\n      </div>\n    </div>\n    <div class=\"footer\">\n      Saved to SQLite (<code>~/services-ai/contacts.sqlite</code>) &amp; JSONL log. Automated via n8n on Mac mini M4.\n    </div>\n  </div>\n</body>\n</html>`;\n\nconst dbRecord = {\n  submissionId: submissionId,\n  name: rawName,\n  email: rawEmail,\n  company: rawCompany,\n  serviceInterest: rawService,\n  phone: rawPhone,\n  message: rawMessage,\n  source: rawSource\n};\n\nconst dbBase64 = Buffer.from(JSON.stringify(dbRecord)).toString('base64');\n\nreturn {\n  json: {\n    submissionId: submissionId,\n    name: rawName,\n    email: rawEmail,\n    company: rawCompany,\n    serviceInterest: rawService,\n    phone: rawPhone,\n    message: rawMessage,\n    source: rawSource,\n    dbBase64: dbBase64,\n    createdAt: now.toISOString(),\n    formattedDate: formattedDate,\n    emailSubject: emailSubject,\n    emailHtml: emailHtml\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -340,
+        0
+      ],
+      "id": "sanitize-services-contact",
+      "name": "Sanitize & Format Input"
+    },
+    {
+      "parameters": {
+        "command": "=/usr/local/bin/node /Users/gezahorvath/services-ai/save_service_contact.js {{ $json.dbBase64 }}"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -110
+      ],
+      "id": "persist-services-sqlite",
+      "name": "Persist to SQLite & JSONL",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "fromEmail": "ghorvath@gmail.com",
+        "toEmail": "ghorvath@gmail.com",
+        "subject": "={{ $json.emailSubject }}",
+        "html": "={{ $json.emailHtml }}",
+        "options": {
+          "replyTo": "={{ $json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -60,
+        70
+      ],
+      "id": "send-services-email",
+      "name": "Send Notification Email",
+      "credentials": {
+        "smtp": {
+          "id": "RtW0kCWZm4SAniIq",
+          "name": "SMTP account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"message\": \"Thank you! Your inquiry has been received and Géza has been notified by email.\",\n  \"submissionId\": {{ JSON.stringify($json.submissionId) }}\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type, Accept"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "respond-services-contact",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Sanitize & Format Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sanitize & Format Input": {
+      "main": [
+        [
+          {
+            "node": "Persist to SQLite & JSONL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Notification Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
