@@ -89,12 +89,12 @@ window.SITE_TRANSLATIONS = {
 
     faq1_q: "Can you embed an AI chatbot into my existing website without rebuilding it?",
     faq1_a: "Yes. The chatbot is packaged as a lightweight, self-contained widget that drops cleanly into existing websites (WordPress, static HTML, Shopify, React/Vue, or custom CMS) while matching your brand colors and typography.",
-    faq2_q: "How do you make sure the chatbot doesn't invent wrong prices or fake promises?",
+    faq2_q: "How do you make sure the chatbot doesn't invent information, wrong prices or fake promises?",
     faq2_a: "Every chatbot uses strict Context Grounding: it reads exclusively from your approved business documentation, pricing tables, and calculation rules. If a visitor asks something outside your documents, it politely directs them to contact you instead of guessing.",
-    faq3_q: "Where are the AI models and n8n automations hosted? Is our data private?",
+    faq3_q: "Where are the AI models and automations hosted? Is our data private?",
     faq3_a: "You have full flexibility: workflows and AI models can run on private, self-hosted hardware or VPS (so sensitive customer data never leaks to third parties) or connect to leading cloud AI APIs depending on your speed and compliance preferences.",
     faq4_q: "Can we update our business prices or FAQ documents later without coding?",
-    faq4_a: "Absolutely. Your business context lives in clean, human-readable documents (Markdown, spreadsheets, or a simple admin form), so updating a unit rate or service rule immediately updates the chatbot's answers.",
+    faq4_a: "Absolutely. Your business context lives in clean, human-readable documents (Text documents, spreadsheets, or a simple admin form), so updating information, a unit rate or service rule immediately updates the chatbot's answers.",
     faq5_q: "How do we get started and what does a typical timeline look like?",
     faq5_a: "Send a short message via the contact form below. After a quick discovery chat and fixed-scope proposal, most embedded chatbots or automations launch within 1–2 weeks (full-stack websites typically 2–5 weeks).",
 
@@ -223,12 +223,12 @@ window.SITE_TRANSLATIONS = {
 
     faq1_q: "Kann ein KI-Chatbot in meine bestehende Website integriert werden?",
     faq1_a: "Ja. Das Widget lässt sich ohne Neubau nahtlos in bestehende Websites (WordPress, HTML, Shopify, React/Vue etc.) im eigenen Marken-Design einbetten.",
-    faq2_q: "Wie wird verhindert, dass der Chatbot falsche Preise erfindet?",
+    faq2_q: "Wie wird verhindert, dass der Chatbot Informationen, falsche Preise oder leere Versprechungen erfindet?",
     faq2_a: "Durch striktes Context-Grounding: Der Bot nutzt ausschließlich Ihre freigegebenen Preislisten, Formeln und Dokumente. Fehlt eine Info, verweist er höflich an Ihr Team.",
-    faq3_q: "Wo laufen KI und n8n-Automatisierungen? Bleiben Daten privat?",
+    faq3_q: "Wo laufen KI und Automatisierungen? Bleiben Daten privat?",
     faq3_a: "Ganz nach Wunsch: 100 % privat auf dedizierter Hardware/VPS (ohne Datenabfluss an Dritte) oder über schnelle Cloud-KI-Schnittstellen.",
     faq4_q: "Können wir Preise oder Dokumente später selbst aktualisieren?",
-    faq4_a: "Ja — Ihre Wissensbasis liegt in klar strukturierten Dokumenten vor, sodass Preis- oder Textänderungen sofort vom Chatbot übernommen werden.",
+    faq4_a: "Ja — Ihre Wissensbasis liegt in klar strukturierten Dokumenten vor (Textdokumente, Tabellen oder ein einfaches Admin-Formular), sodass Änderungen an Informationen, Einheitspreisen oder Leistungsregeln sofort vom Chatbot übernommen werden.",
     faq5_q: "Wie starten wir und wie sieht der typische Zeitrahmen aus?",
     faq5_a: "Schreiben Sie mir kurz über das Kontaktformular. Nach einem kurzen Erstgespräch stehen die meisten eingebetteten Chatbots oder Workflows innerhalb von 1–2 Wochen bereit (Full-Stack-Websites meist 2–5 Wochen).",
 
@@ -357,12 +357,12 @@ window.SITE_TRANSLATIONS = {
 
     faq1_q: "Beépíthető az AI chatbot a már meglévő weboldalamba újraépítés nélkül?",
     faq1_a: "Igen. A chatbot egy könnyű, önálló modulként illeszthető be bármilyen meglévő weboldalba (WordPress, statikus HTML, Shopify, React/Vue stb.), a márkád színeire és tipográfiájára hangolva.",
-    faq2_q: "Hogyan biztosítod, hogy a chatbot ne találjon ki téves árakat?",
+    faq2_q: "Hogyan biztosítod, hogy a chatbot ne találjon ki információkat, téves árakat vagy valótlan ígéreteket?",
     faq2_a: "Szigorú tényalapú kontextussal (Context Grounding): az AI kizárólag a jóváhagyott árlistádból és dokumentumaidból dolgozik. Ha valami nincs a dokumentációban, nem találgat, hanem közvetlen kapcsolatfelvételt javasol.",
-    faq3_q: "Hol fut az AI és az n8n automatizáció? Biztonságban maradnak az adatok?",
+    faq3_q: "Hol fut az AI és az automatizáció? Biztonságban maradnak az adatok?",
     faq3_a: "Teljesen rugalmas: futhat 100%-ban privát, saját szerveren vagy VPS-en (harmadik félnek való adatszivárgás nélkül), vagy gyors felhős AI API-kon keresztül is.",
     faq4_q: "Később programozás nélkül is tudjuk frissíteni az árakat a chatbotban?",
-    faq4_a: "Természetesen. A tudásbázis átlátható dokumentumokban él, így egy ár- vagy szövegmódosítás azonnal érvénybe lép a chatbot válaszaiban.",
+    faq4_a: "Természetesen. A tudásbázis átlátható dokumentumokban él (szöveges dokumentumok, táblázatok vagy egy egyszerű űrlap), így az információk, egységárak vagy szolgáltatási szabályok módosítása azonnal érvénybe lép a chatbot válaszaiban.",
     faq5_q: "Hogyan indul a közös munka, és mennyi idő alatt készül el egy projekt?",
     faq5_a: "Küldj egy rövid üzenetet a lenti űrlapon. Egy gyors igényfelmérő beszélgetés és fix ütemterv után a legtöbb beépített chatbot vagy automatizáció 1–2 héten belül elindul (full-stack weboldalak jellemzően 2–5 hét).",
 
